@@ -1,10 +1,16 @@
 import React from 'react';
 import './App.css';
+import WeatherDisplay from "./features/weather/WeatherDisplay";
+import WeatherSearch from "./features/weather/WeatherSearch";
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="App">
-      hello
+      <p>
+          Weather
+      </p>
+        <WeatherSearch/>
+        <WeatherDisplay/>
     </div>
   );
 }
