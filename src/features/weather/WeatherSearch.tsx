@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAppDispatch } from '../../app/hooks';
 import { fetchWeatherData } from "./weatherSlice";
+import * as s from './WeatherSearchStyles';
 
 const WeatherSearch: React.FC = () => {
     const [city, setCity] = useState('');
@@ -13,15 +14,16 @@ const WeatherSearch: React.FC = () => {
     };
 
     return (
-        <div>
-            <input
+        <s.WeatherSearchContainer>
+            <s.Title>Погодка</s.Title>
+            <s.WeatherInput
                 type='text'
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
                 placeholder="Enter city"
                 />
-            <button onClick={handleSearch}>Get Weather</button>
-        </div>
+            <s.WeatherButton onClick={handleSearch}>Get Weather</s.WeatherButton>
+        </s.WeatherSearchContainer>
     );
 };
 

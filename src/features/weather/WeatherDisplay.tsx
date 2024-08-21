@@ -1,5 +1,7 @@
 import React from "react";
 import { useAppSelector} from "../../app/hooks";
+import { TailSpin } from 'react-loader-spinner';
+import * as s from "./WeatherDisplayStyles";
 
 const WeatherDisplay: React.FC = () => {
     const weather = useAppSelector((state) => state.weather.data);
@@ -7,19 +9,26 @@ const WeatherDisplay: React.FC = () => {
     const error = useAppSelector((state) => state.weather.error);
 
     if (status === 'loading') {
-        return <div>Loading...</div>
+        return (
+        <s.WeatherDisplayContainer>
+            <TailSpin/>
+            <p>Loading...</p>
+        </s.WeatherDisplayContainer>
+        )
     }
 
     if (status === 'failed') {
-        return <div>Error: {error}</div>
+        return <s.WeatherDisplayContainer>Error: {error}</s.WeatherDisplayContainer>
     }
         return (
             weather && (
-                <div>
+                <s.WeatherDisplayContainer>
+                    <s.WeatherCard>
                     <h2>{weather.name}</h2>
-                    <p>{weather.main.temp}°C</p>
-                    <p>{weather.weather[0].description}</p>
-                </div>
+                    <s.Temperature>{weather.main.temp}°C</s.Temperature>
+                    <s.Description>{weather.weather[0].description}</s.Description>
+                    </s.WeatherCard>
+                </s.WeatherDisplayContainer>
             )
         );
     }
